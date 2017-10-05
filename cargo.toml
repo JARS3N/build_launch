@@ -1,0 +1,10 @@
+[package]
+name = "seastar"
+version = "0.1.0"
+authors = ["jars3n"]
+build = "build.rs"
+[dependencies]
+native-windows-gui = "0.2.0"
+
+[build-dependencies]
+winres = "0.1"
