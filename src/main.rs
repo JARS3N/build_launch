@@ -20,10 +20,14 @@ use std::process::Command;
 // get list of R scripts in seascripts Package
 fn get_scripts()-> Vec<String>{
 			let a = Command::new("Rscript.exe")
-        .args(&["-e", "cat(paste(list.files(system.file('scripts',package='seascripts')),collapse='\n'))"])
+        //.args(&["-e", "cat(paste(list.files(system.file('scripts',package='seascripts')),sep=' '))"])
+		.args(&["-e", "cat(paste(seascripts::show(),collapse='\n'))"])
 		.output()
         .expect("...!!!");
-         let mydata: Vec<String> = String::from_utf8_lossy(&a.stdout).split_whitespace().map(|s| s.to_string()).collect();
+         let mydata: Vec<String> = String::from_utf8_lossy(&a.stdout)
+		 .split_whitespace()
+		 .map(|s| s.to_string())
+		 .collect();
 		return mydata;
 }
 //launch R app
@@ -46,7 +50,7 @@ nwg_template!(
 	
 	
         (MainWindow, nwg_window!( 
-            title="seascripts Apps";
+            title="Seastar";
             size=(350, 75) 
             )),
 
