@@ -20,7 +20,7 @@ use std::process::Command;
 // get list of R scripts in seascripts Package
 fn get_scripts()-> Vec<String>{
 			let a = Command::new("Rscript.exe")
-        .args(&["-e", "cat(paste(list.files(system.file('scripts',package='seascripts')),sep=' '))"])
+        .args(&["-e", "cat(paste(list.files(system.file('scripts',package='seascripts')),collapse='\n'))"])
 		.output()
         .expect("...!!!");
          let mydata: Vec<String> = String::from_utf8_lossy(&a.stdout).split_whitespace().map(|s| s.to_string()).collect();
